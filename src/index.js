@@ -4,8 +4,8 @@ const SpotifyWebApi = require("spotify-web-api-node");
 const app = express();
 
 const spotify = new SpotifyWebApi({
-  clientId: process.env.clientId,
-  clientSecret: process.env.clientSecret
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET
 });
 
 spotify.clientCredentialsGrant().then(
@@ -92,4 +92,4 @@ app.get("/artist", (req, res) => {
     });
 });
 
-app.listen(8080);
+app.listen(process.env.PORT || 8080);
