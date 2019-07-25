@@ -1,8 +1,13 @@
 const express = require("express");
+const helmet = require("helmet");
+const cors = require("cors");
 const SpotifyWebApi = require("spotify-web-api-node");
 require("dotenv").config();
 
 const app = express();
+
+app.use(helmet());
+app.use(cors());
 
 const spotify = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
@@ -22,7 +27,8 @@ app.get("/", (req, res) => {
   res.send("Oh hey!");
 });
 
-app.get("/artist", (req, res) => {
+app.get("/artists", (req, res) => {
+  console.log("/artists");
   const artist = req.query.q;
   let artistName, artistId;
 
