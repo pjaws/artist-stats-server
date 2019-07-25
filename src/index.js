@@ -54,31 +54,39 @@ app.get("/artists", (req, res) => {
       const stats = audioFeatures.body.audio_features;
       console.log("Stats:");
       console.dir(stats);
-      const acousticness =
+      const acousticness = (
         stats.map(track => track.acousticness).reduce((a, b) => a + b) /
-        stats.length;
-      const danceability =
+        stats.length
+      ).toFixed(3);
+      const danceability = (
         stats.map(track => track.danceability).reduce((a, b) => a + b) /
-        stats.length;
-      const energy =
-        stats.map(track => track.energy).reduce((a, b) => a + b) / stats.length;
-      const instrumentalness =
+        stats.length
+      ).toFixed(3);
+      const energy = (
+        stats.map(track => track.energy).reduce((a, b) => a + b) / stats.length
+      ).toFixed(3);
+      const instrumentalness = (
         stats.map(track => track.instrumentalness).reduce((a, b) => a + b) /
-        stats.length;
-      const liveness =
+        stats.length
+      ).toFixed(3);
+      const liveness = (
         stats.map(track => track.liveness).reduce((a, b) => a + b) /
-        stats.length;
-      const loudness =
+        stats.length
+      ).toFixed(3);
+      const loudness = (
         stats.map(track => track.loudness).reduce((a, b) => a + b) /
-        stats.length;
-      const speechiness =
+        stats.length
+      ).toFixed(3);
+      const speechiness = (
         stats.map(track => track.speechiness).reduce((a, b) => a + b) /
-        stats.length;
-      const tempo =
-        stats.map(track => track.tempo).reduce((a, b) => a + b) / stats.length;
-      const valence =
-        stats.map(track => track.valence).reduce((a, b) => a + b) /
-        stats.length;
+        stats.length
+      ).toFixed(3);
+      const tempo = (
+        stats.map(track => track.tempo).reduce((a, b) => a + b) / stats.length
+      ).toFixed(3);
+      const valence = (
+        stats.map(track => track.valence).reduce((a, b) => a + b) / stats.length
+      ).toFixed(3);
 
       res.json({
         artistName,
