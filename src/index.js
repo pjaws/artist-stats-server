@@ -57,36 +57,36 @@ app.get("/artists", (req, res) => {
       const acousticness = (
         stats.map(track => track.acousticness).reduce((a, b) => a + b) /
         stats.length
-      ).toFixed(3);
+      ).toFixed(2);
       const danceability = (
         stats.map(track => track.danceability).reduce((a, b) => a + b) /
         stats.length
-      ).toFixed(3);
+      ).toFixed(2);
       const energy = (
         stats.map(track => track.energy).reduce((a, b) => a + b) / stats.length
-      ).toFixed(3);
+      ).toFixed(2);
       const instrumentalness = (
         stats.map(track => track.instrumentalness).reduce((a, b) => a + b) /
         stats.length
-      ).toFixed(3);
+      ).toFixed(2);
       const liveness = (
         stats.map(track => track.liveness).reduce((a, b) => a + b) /
         stats.length
-      ).toFixed(3);
+      ).toFixed(2);
       const loudness = (
         stats.map(track => track.loudness).reduce((a, b) => a + b) /
         stats.length
-      ).toFixed(3);
+      ).toFixed(2);
       const speechiness = (
         stats.map(track => track.speechiness).reduce((a, b) => a + b) /
         stats.length
-      ).toFixed(3);
+      ).toFixed(2);
       const tempo = (
         stats.map(track => track.tempo).reduce((a, b) => a + b) / stats.length
-      ).toFixed(3);
+      ).toFixed(0);
       const valence = (
         stats.map(track => track.valence).reduce((a, b) => a + b) / stats.length
-      ).toFixed(3);
+      ).toFixed(2);
 
       res.json({
         artistName,
