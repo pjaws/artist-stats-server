@@ -1,8 +1,8 @@
-const express = require("express");
-const helmet = require("helmet");
-const cors = require("cors");
-const SpotifyWebApi = require("spotify-web-api-node");
-require("dotenv").config();
+const express = require('express');
+const helmet = require('helmet');
+const cors = require('cors');
+const SpotifyWebApi = require('spotify-web-api-node');
+require('dotenv').config();
 
 const app = express();
 
@@ -11,24 +11,25 @@ app.use(cors());
 
 const spotify = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
-  clientSecret: process.env.CLIENT_SECRET
+  clientSecret: process.env.CLIENT_SECRET,
 });
 
 spotify.clientCredentialsGrant().then(
   data => {
-    spotify.setAccessToken(data.body["access_token"]);
+    spotify.setAccessToken(data.body['access_token']);
   },
   err => {
-    console.error("Ruh roh no access token", err);
-  }
+    console.error('Ruh roh no access token', err);
+  },
 );
 
-app.get("/", (req, res) => {
-  res.send("Oh hey!");
+app.get('/', (req, res) => {
+  console.log('/');
+  res.send('Oh hey!');
 });
 
-app.get("/artists", (req, res) => {
-  console.log("/artists");
+app.get('/artists', (req, res) => {
+  console.log('/artists');
   const artist = req.query.q;
   let artistName, artistId;
 
@@ -41,7 +42,7 @@ app.get("/artists", (req, res) => {
       return artistId;
     })
     .then(artistId => {
-      return spotify.getArtistTopTracks(artistId, "US");
+      return spotify.getArtistTopTracks(artistId, 'US');
     })
     .then(topTracks => {
       // return an array of track ids to get stats for
@@ -52,7 +53,7 @@ app.get("/artists", (req, res) => {
     })
     .then(audioFeatures => {
       const stats = audioFeatures.body.audio_features;
-      console.log("Stats:");
+      console.log('Stats:');
       console.dir(stats);
       const acousticness = (
         stats.map(track => track.acousticness).reduce((a, b) => a + b) /
@@ -99,11 +100,11 @@ app.get("/artists", (req, res) => {
         loudness,
         speechiness,
         tempo,
-        valence
+        valence,
       });
     })
     .catch(err => {
-      console.error("Ruh roh search failed", err);
+      console.error('Ruh roh search failed', err);
     });
 });
 
